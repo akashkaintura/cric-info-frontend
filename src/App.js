@@ -1,25 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { ThemeProvider } from './context/ThemeContext';
+import Header from './components/Header';
+import HomePage from './pages/HomePage';
+// import MatchPage from './pages/MatchPage';
+import MatchDetails from './components/MatchDetails';
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider>
+      <div className="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 min-h-screen">
+        <Router>
+          <Header />
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/match/:matchId" element={<MatchDetails />} />
+          </Routes>
+        </Router>
+      </div>
+    </ThemeProvider>
   );
-}
+};
 
 export default App;
